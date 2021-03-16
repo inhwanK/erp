@@ -12,7 +12,7 @@ import erp.dto.Department;
 import erp.ui.exception.InvalidCheckException;
 
 @SuppressWarnings("serial")
-public class DepartmentPanel extends InterfaceItem<Department>{
+public class DepartmentPanel extends AbstractContentPanel<Department>{
 	private JTextField tfDeptNo;
 	private JTextField tfDeptName;
 	private JTextField tfFloor;
@@ -21,8 +21,7 @@ public class DepartmentPanel extends InterfaceItem<Department>{
 		initialize();
 	}
 	
-	@Override
-	public void initialize() {
+	private void initialize() {
 		setBorder(new TitledBorder(null, "부서 정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new GridLayout(0, 2, 10, 10));
 		

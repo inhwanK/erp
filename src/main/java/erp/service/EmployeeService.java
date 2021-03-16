@@ -32,4 +32,16 @@ public class EmployeeService {
 	public List<Employee> showEmployees(){
 		return employeeDao.selectEmployeeByAll();
 	}
+	
+	public void removeEmployee(Employee employee) {
+		employeeDao.deleteEmployee(employee);
+	}
+	
+	public void modifyEmployee(Employee employee) {
+		employeeDao.updateEmployee(employee);
+	}
+	
+	public void addEmployee(Employee employee) {
+		employeeDao.insertEmployee(employee);
+	}
 }

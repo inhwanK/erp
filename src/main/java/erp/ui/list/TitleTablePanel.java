@@ -8,7 +8,7 @@ import erp.service.TitleService;
 @SuppressWarnings("serial")
 public class TitleTablePanel extends AbstractCustomTablePanel<Title> {
 	private TitleService service;
-	
+
 	@Override
 	protected void setAlignAndWidth() {
 		// 컬럼내용 정렬
@@ -35,13 +35,4 @@ public class TitleTablePanel extends AbstractCustomTablePanel<Title> {
 	public void setService(TitleService service) {
 		this.service = service;
 	}
-	
 }
-
-
-
-
-
-
-
-

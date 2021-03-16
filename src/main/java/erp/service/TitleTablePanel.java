@@ -9,7 +9,7 @@ import erp.dao.impl.TitleDaoImpl;
 import erp.dto.Employee;
 import erp.dto.Title;
 
-public class TitleService {
+public class TitleTablePanel {
 	private TitleDao dao = TitleDaoImpl.getInstance();
 	private EmployeeDao empDao = EmployeeDaoImpl.getInstance();
 	
@@ -32,4 +32,10 @@ public class TitleService {
 	public List<Employee> showEmployeeGroupByTitle(Title title){
 		return empDao.selectEmployeeByTitle(title);
 	}
+
+	public void setService(TitleTablePanel service) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

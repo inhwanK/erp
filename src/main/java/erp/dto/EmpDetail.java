@@ -18,6 +18,11 @@ public class EmpDetail {
 		this.empNo = empNo;
 	}
 	
+	public EmpDetail(int empNo, boolean gender) {
+		this.empNo = empNo;
+		this.gender = gender;
+	}
+	
 	public EmpDetail(int empNo, boolean gender, Date hireDate, byte[] pic) {
 		this.empNo = empNo;
 		this.gender = gender;
@@ -78,6 +83,8 @@ public class EmpDetail {
 		return String.format("EmpDetail [empNo=%s, gender=%s, hireDate=%s, pic=%s]", empNo, gender, hireDate,
 				Arrays.toString(pic)); //쌤한테 질문.
 	}
+
+	
 
 	
 }

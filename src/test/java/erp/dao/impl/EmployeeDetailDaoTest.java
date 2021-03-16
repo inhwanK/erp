@@ -74,7 +74,12 @@ public class EmployeeDetailDaoTest {
 
 	@Test
 	public void test03UpdateEmployeeDetail() {
-		fail("Not yet implemented");
+		System.out.printf("%s ()%n","test03UpdateEmployeeDetail()");
+		EmpDetail empDetail = new EmpDetail(1003,true);
+		int res = dao.updateEmployeeDetail(empDetail);
+		
+		Assert.assertEquals(1, res);
+		System.out.println(empDetail);
 	}
 
 	@Test

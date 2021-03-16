@@ -76,8 +76,18 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 
 	@Override
 	public int updateEmployeeDetail(EmpDetail empDetail) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "update emp_detail " + 
+			     "   set gender = ?" + 
+			     " where empno = ?";
+	try(Connection con = JdbcConn.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql)){
+		pstmt.setBoolean(1, empDetail.isGender());
+		pstmt.setInt(2, empDetail.getEmpNo());
+		return pstmt.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return 0;
 	}
 
 	@Override

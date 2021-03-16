@@ -1,5 +1,6 @@
 package erp;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,16 +18,20 @@ import erp.dto.Title;
 import erp.service.EmployeeService;
 import erp.ui.content.EmployeePanel;
 import erp.ui.list.EmployeeTablePanel;
+import erp.ui.content.EmployeeDetailPanel;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 @SuppressWarnings("serial")
 public class TestFrame extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnAdd;
-	private EmployeePanel pEmpItem;
 	private JButton btnSet;
 	private JButton btnCancel;
 	private EmployeeTablePanel pList;
+	private JPanel panel;
+	private EmployeeDetailPanel panel_1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,17 +52,13 @@ public class TestFrame extends JFrame implements ActionListener {
 	
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 408);
+		setBounds(100, 100, 622, 498);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
 		EmployeeService service = new EmployeeService();
-		pEmpItem = new EmployeePanel();
-		pEmpItem.setService(service);
-		
-		contentPane.add(pEmpItem);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel pBtns = new JPanel();
 		contentPane.add(pBtns);
@@ -78,6 +79,12 @@ public class TestFrame extends JFrame implements ActionListener {
 		pList.setService(service);
 		pList.loadData();
 		contentPane.add(pList);
+		
+		panel = new JPanel();
+		pList.add(panel, BorderLayout.SOUTH);
+		
+		panel_1 = new EmployeeDetailPanel();
+		contentPane.add(panel_1, BorderLayout.NORTH);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -97,34 +104,13 @@ public class TestFrame extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnAdd(ActionEvent e) {
-		Employee emp = pEmpItem.getItem();
-		String message = String.format(
-				"empNo %d%n"
-				+ "empName %s%n"
-				+ "title(%d)%n"
-				+ "dept(%d)%n"
-				+ "manager(%s)%n"
-				+ "salary(%s)"
-				, emp.getEmpNo()
-				, emp.getEmpName()
-				, emp.getTitle().gettNo()
-				, emp.getDept().getDeptNo()
-				, emp.getManager().getEmpName()
-				, emp.getSalary());
-		JOptionPane.showMessageDialog(null, message);
+	
 	}
 	
 	protected void actionPerformedBtnSet(ActionEvent e) {
-		Employee emp = new Employee(
-				1003
-				, "조민희"
-				, new Title(3)
-				, new Employee(4377)
-				, 3000000
-				, new Department(2));
-		pEmpItem.setItem(emp);
+		
 	}
 	protected void actionPerformedBtnCancel(ActionEvent e) {
-		pEmpItem.clearTf();
+		
 	}
 }

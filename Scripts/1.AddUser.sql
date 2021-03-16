@@ -11,3 +11,6 @@ GRANT File
   grant all 
    on erp.* 
    to 'user_erp'@'localhost' identified by 'rootroot';
+   
+-- join 확인
+select password('aaazapsdfiqapeomvz;mvzlkd;afkldjjfa;ldkj'), length(password('aaazapsdfiqapeomvz;mvzlkd;afkldjjfa;ldkj')) from dual;

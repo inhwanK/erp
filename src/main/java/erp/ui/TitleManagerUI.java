@@ -11,7 +11,6 @@ import erp.dto.Title;
 import erp.service.TitleService;
 import erp.ui.content.AbstractContentPanel;
 import erp.ui.content.TitlePanel;
-import erp.ui.list.AbstractCustomTablePanel;
 import erp.ui.list.TitleTablePanel;
 
 @SuppressWarnings("serial")

@@ -1,8 +1,5 @@
 package erp.dao.impl;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,8 +36,8 @@ public class EmployeeDetailDaoTest {
 		
 		EmpDetail employeeDetail = dao.selectEmployeeDetailByNo(new Employee(1003));
 		Assert.assertNotNull(employeeDetail);
+		
 		System.out.println(employeeDetail);
-//		Assert.assertNull(employeeDetail);
 	}
 
 	@Test
@@ -50,17 +47,17 @@ public class EmployeeDetailDaoTest {
 		Calendar cal = GregorianCalendar.getInstance();
 		cal.getTime();
 		
-		EmpDetail empDetail = new EmpDetail(1003, false, new Date(),"1234", getImage("noimage.jpg"));
+//		EmployeeDetail empDetail = new EmployeeDetail(1003, true, cal.getTime(), "1234", getImage("noImg.jpg"));
+		EmpDetail empDetail = new EmpDetail(1003, true, new Date(), "1234", getImage("noimage.jpg"));
 		int res = dao.insertEmployeeDetail(empDetail);
 		
-		// INSERT INTO emp_detail(empno, pic, gender, hiredate, password)  VALUES (1003, null, false, 1111 , password('1234'));
 		Assert.assertEquals(1, res);
 	}
 
 	private byte[] getImage(String imgName) {
 		byte[] pic = null;
 		            //     /images/imgName
-		File file = new File(System.getProperty("user.dir") + File.separator + "Images", imgName);
+		File file = new File(System.getProperty("user.dir") + File.separator + "Image", imgName);
 		try(InputStream is = new FileInputStream(file)){
 			pic = new byte[is.available()]; //file로 부터 읽은 이미지의 바이트길이로 배열 생성
 			is.read(pic);
@@ -72,27 +69,31 @@ public class EmployeeDetailDaoTest {
 		return pic;
 	}
 
-	@Test
-	public void test03UpdateEmployeeDetail() {
-		System.out.printf("%s ()%n","test03UpdateEmployeeDetail()");
-		EmpDetail empDetail = new EmpDetail(1003,true);
-		int res = dao.updateEmployeeDetail(empDetail);
-		
-		Assert.assertEquals(1, res);
-		System.out.println(empDetail);
-	}
-
-	@Test
-	public void test04DeleteEmployeeDetail() {
-		System.out.printf("%s()%n", "test04DeleteEmployeeDetail");
-		Employee employee = new Employee(1003);
-		int res = dao.deleteEmployeeDetail(employee);
-		
-		Assert.assertEquals(1, res);
-		
-		EmpDetail employeeDetail = dao.selectEmployeeDetailByNo(new Employee(1003));
-		System.out.println(employeeDetail);
-		Assert.assertNull(employeeDetail);
-	}
+//	@Test
+//	public void test03UpdateEmployeeDetail() {
+//		System.out.printf("%s()%n", "test03UpdateEmployeeDetail");
+//		
+//		Calendar cal = GregorianCalendar.getInstance();
+//		cal.getTime();
+//		
+//		EmpDetail empDetail = new EmpDetail(1003, false, cal.getTime(), "1234", getImage("suji.jpg"));
+//		int res = dao.updateEmployeeDetail(empDetail);
+//		
+//		Assert.assertEquals(1, res);
+//		
+//		System.out.println(dao.selectEmployeeDetailByNo(new Employee(1003)));
+//	}
+//
+//	@Test
+//	public void test04DeleteEmployeeDetail() {
+//		System.out.printf("%s()%n", "test04DeleteEmployeeDetail");
+//		Employee employee = new Employee(1003);
+//		int res = dao.deleteEmployeeDetail(employee);
+//		
+//		Assert.assertEquals(1, res);
+//		
+//		EmpDetail employeeDetail = dao.selectEmployeeDetailByNo(new Employee(1003));
+//		Assert.assertNull(employeeDetail);
+//	}
 
 }

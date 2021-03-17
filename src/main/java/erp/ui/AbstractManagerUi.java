@@ -26,6 +26,11 @@ public abstract class AbstractManagerUi<T> extends JFrame implements ActionListe
 	
 	protected AbstractContentPanel<T> pContent;
 	protected AbstractCustomTablePanel<T> pList;
+	protected JMenuItem empListByTitleItem;
+	
+	protected static final String TITLE_MENU ="동일 직책 사원 보기";
+	protected static final String DEPT_MENU ="동일 부서 사원 보기";
+	protected static final String EMP_MENU ="동일 세부정보 보기";
 	
 	public AbstractManagerUi() {
 		setService();//service 연결
@@ -75,7 +80,7 @@ public abstract class AbstractManagerUi<T> extends JFrame implements ActionListe
 		deleteItem.addActionListener(this);
 		popMenu.add(deleteItem);
 		
-		JMenuItem empListByTitleItem = new JMenuItem("동일 직책 사원 보기");
+		empListByTitleItem = new JMenuItem("동일 직책 사원 보기");
 		empListByTitleItem.addActionListener(this);
 		popMenu.add(empListByTitleItem);
 		
@@ -94,7 +99,9 @@ public abstract class AbstractManagerUi<T> extends JFrame implements ActionListe
 					actionPerformedMenuUpdate();
 				}
 				
-				if (e.getActionCommand().contentEquals("동일 직책 사원 보기")) {
+				if (e.getActionCommand().contentEquals(AbstractManagerUi.TITLE_MENU)
+						|| e.getActionCommand().contentEquals(AbstractManagerUi.DEPT_MENU) 
+						|| e.getActionCommand().contentEquals(AbstractManagerUi.EMP_MENU)){
 					actionPerformedMenuGubun();
 				}
 			}else {

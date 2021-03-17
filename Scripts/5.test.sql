@@ -52,4 +52,9 @@ INSERT INTO emp_detail(empno, pic, gender, hiredate)
 	               VALUES (1003, null, false, 1111 );
 	               
 	              
-SELECT empno, pic, gender, hiredate FROM emp_detail WHERE empno = 1003;	    
+SELECT empno, pic, gender, hiredate FROM emp_detail WHERE empno = 1003;   
+
+select *
+  from employee;
+ 
+ 

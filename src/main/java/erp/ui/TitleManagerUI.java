@@ -90,4 +90,8 @@ public class TitleManagerUI extends AbstractManagerUi<Title> {
 		JOptionPane.showMessageDialog(null, title + " 추가했습니다.");		
 	}
 
+	public TitleManagerUI() {
+		empListByTitleItem.setText(AbstractManagerUi.TITLE_MENU);
+	}
+
 }

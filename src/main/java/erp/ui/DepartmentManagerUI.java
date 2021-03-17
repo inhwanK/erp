@@ -18,6 +18,7 @@ import erp.ui.list.DepartmentTablePanel;
 public class DepartmentManagerUI extends AbstractManagerUi<Department> {
 	private DepartmentService service;
 	
+
 	@Override
 	protected void setService() {
 		service = new DepartmentService();		
@@ -89,5 +90,11 @@ public class DepartmentManagerUI extends AbstractManagerUi<Department> {
 		pContent.clearTf();
 		JOptionPane.showMessageDialog(null, addDept + " 추가했습니다.");		
 	}
+
+	public DepartmentManagerUI() {
+		empListByTitleItem.setText(AbstractManagerUi.DEPT_MENU);
+	}
+
+	
 
 }

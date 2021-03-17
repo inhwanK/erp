@@ -17,20 +17,15 @@ public class EmpDetail {
 	public EmpDetail(int empNo) {
 		this.empNo = empNo;
 	}
-	
-	public EmpDetail(int empNo, boolean gender) {
-		this.empNo = empNo;
-		this.gender = gender;
-	}
-	
+
 	public EmpDetail(int empNo, boolean gender, Date hireDate, byte[] pic) {
 		this.empNo = empNo;
 		this.gender = gender;
 		this.hireDate = hireDate;
 		this.pic = pic;
 	}
-	
-	public EmpDetail(int empNo, boolean gender, Date hireDate,String pass, byte[] pic) {
+
+	public EmpDetail(int empNo, boolean gender, Date hireDate, String pass, byte[] pic) {
 		this.empNo = empNo;
 		this.gender = gender;
 		this.hireDate = hireDate;
@@ -80,9 +75,12 @@ public class EmpDetail {
 
 	@Override
 	public String toString() {
-		return String.format("EmpDetail [empNo=%s, gender=%s, hireDate=%s, pic=%s]", empNo, gender, hireDate,
-				Arrays.toString(pic)); //쌤한테 질문.
+		return String.format("EmpDetail [empNo=%s, gender=%s, hireDate=%s, pass=%s, pic=%s]", empNo, gender, hireDate,
+				pass, Arrays.toString(pic));
 	}
+
+	
+
 
 	
 

@@ -1,6 +1,5 @@
 package erp;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,26 +11,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import erp.dto.Department;
+import erp.dto.EmpDetail;
 import erp.dto.Employee;
-import erp.dto.Title;
+import erp.service.EmployeeDetailService;
 import erp.service.EmployeeService;
-import erp.ui.content.EmployeePanel;
-import erp.ui.list.EmployeeTablePanel;
 import erp.ui.content.EmployeeDetailPanel;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import erp.ui.list.EmployeeTablePanel;
 
 @SuppressWarnings("serial")
 public class TestFrame extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JButton btnAdd;
-	private JButton btnSet;
-	private JButton btnCancel;
 	private EmployeeTablePanel pList;
-	private JPanel panel;
-	private EmployeeDetailPanel panel_1;
+	private EmployeeDetailPanel panel;
+	private JPanel panel_1;
+	private JButton btnGet;
+	private JButton btnSet;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -52,65 +47,54 @@ public class TestFrame extends JFrame implements ActionListener {
 	
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 622, 498);
+		setBounds(100, 100, 450, 685);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
 		EmployeeService service = new EmployeeService();
-		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JPanel pBtns = new JPanel();
-		contentPane.add(pBtns);
-		
-		btnAdd = new JButton("추가");
-		btnAdd.addActionListener(this);
-		pBtns.add(btnAdd);
-		
-		btnSet = new JButton("Set");
-		btnSet.addActionListener(this);
-		pBtns.add(btnSet);
-		
-		btnCancel = new JButton("취소");
-		btnCancel.addActionListener(this);
-		pBtns.add(btnCancel);
 		
 		pList = new EmployeeTablePanel();
 		pList.setService(service);
 		pList.loadData();
 		contentPane.add(pList);
 		
-		panel = new JPanel();
-		pList.add(panel, BorderLayout.SOUTH);
+		panel = new EmployeeDetailPanel();
+		panel.setTfEmpno(new Employee(1003));
 		
-		panel_1 = new EmployeeDetailPanel();
-		contentPane.add(panel_1, BorderLayout.NORTH);
+		contentPane.add(panel);
+		
+		panel_1 = new JPanel();
+		contentPane.add(panel_1);
+		
+		btnGet = new JButton("가져오기");
+		btnGet.addActionListener(this);
+		panel_1.add(btnGet);
+		
+		btnSet = new JButton("불러오기");
+		btnSet.addActionListener(this);
+		panel_1.add(btnSet);
 	}
 
+
 	public void actionPerformed(ActionEvent e) {
-		try {
-			if (e.getSource() == btnCancel) {
-				actionPerformedBtnCancel(e);
-			}
-			if (e.getSource() == btnSet) {
-				actionPerformedBtnSet(e);
-			}
-			if (e.getSource() == btnAdd) {
-				actionPerformedBtnAdd(e);
-			}
-		}catch (Exception e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage());
-			e1.printStackTrace();
+		if (e.getSource() == btnSet) {
+			actionPerformedBtnSet(e);
+		}
+		if (e.getSource() == btnGet) {
+			actionPerformedBtnGet(e);
 		}
 	}
-	protected void actionPerformedBtnAdd(ActionEvent e) {
-	
+	protected void actionPerformedBtnGet(ActionEvent e) {
+		EmpDetail employeeDetail = panel.getItem();
+		JOptionPane.showMessageDialog(null, employeeDetail);
 	}
 	
 	protected void actionPerformedBtnSet(ActionEvent e) {
-		
+		EmployeeDetailService service = new EmployeeDetailService();
+		EmpDetail empDetail = service.showEmployeeDetail(new Employee(1003));
+		panel.setItem(empDetail);
 	}
-	protected void actionPerformedBtnCancel(ActionEvent e) {
-		
-	}
+	
 }
